@@ -1,6 +1,7 @@
 package io.github.jason13official.crop_eating_animals.api.util;
 
 import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import net.minecraft.core.BlockPos;
@@ -16,9 +17,9 @@ public class Mob2CropNavigation {
     BlockPos.MutableBlockPos mut1 = entPos.mutable();
     BlockPos.MutableBlockPos mut2 = entPos.mutable();
     List<BlockPos> posList = Lists.newLinkedList(BlockPos.betweenClosed(mut1.move(-7, -2, -7), mut2.move(7, 2, 7))).stream()
-        .filter(blockPos -> CropAndMobHelper.isValidCrop(animal, blockPos) && CropAndMobHelper.validLove(animal)).toList();
-
-    posList.sort((pos1, pos2) -> Double.compare(pos1.distSqr(entPos), pos2.distSqr(entPos)));
+        .filter(blockPos -> CropAndMobHelper.isValidCrop(animal, blockPos) && CropAndMobHelper.validLove(animal))
+        .sorted((pos1, pos2) -> Double.compare(pos1.distSqr(entPos), pos2.distSqr(entPos)))
+        .collect(Collectors.toCollection(ArrayList::new));
 
     boolean walk = false;
     for (BlockPos p : posList) {
@@ -36,9 +37,8 @@ public class Mob2CropNavigation {
       List<BlockPos> posList2 = Lists.newLinkedList(BlockPos.betweenClosed(mut1.move(-7, -2, -7), mut2.move(7, 2, 7)))
           .stream()
           .filter(p -> CropAndMobHelper.isMatureCrop(animal.level(), p))
-          .collect(Collectors.toList());
-
-      posList2.sort((pos1, pos2) -> Double.compare(pos1.distSqr(entPos), pos2.distSqr(entPos)));
+          .sorted((pos1, pos2) -> Double.compare(pos1.distSqr(entPos), pos2.distSqr(entPos)))
+          .collect(Collectors.toCollection(ArrayList::new));
 
       for (BlockPos p : posList2) {
         if (animal.getNavigation().createPath(p, 0) == null) {

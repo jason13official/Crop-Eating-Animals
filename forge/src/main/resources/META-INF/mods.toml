@@ -28,9 +28,9 @@ issueTrackerURL="${mod_url}/issues" #optional
     ordering = "NONE"
     side = "BOTH"
 
-[[dependencies.${mod_id}]]
-    modId = "monolib"
-    mandatory = true
-    versionRange = "[0,)"
-    ordering = "NONE"
-    side = "BOTH"
+#[[dependencies.${mod_id}]]
+#    modId = "monolib"
+#    mandatory = true
+#    versionRange = "[0,)"
+#    ordering = "NONE"
+#    side = "BOTH"
