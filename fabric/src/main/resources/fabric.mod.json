@@ -16,10 +16,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.jason13official.examplemod.ExampleModFabric"
+      "io.github.jason13official.crop_eating_animals.CropEatingAnimalsFabric"
     ],
     "client": [
-      "io.github.jason13official.examplemod.ExampleModClientFabric"
+      "io.github.jason13official.crop_eating_animals.CropEatingAnimalsClientFabric"
     ]
   },
   "mixins": [
